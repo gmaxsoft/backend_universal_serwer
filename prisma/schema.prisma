@@ -17,6 +17,7 @@ model User {
   createdAt DateTime @default(now())
   email     String   @unique
   name      String?
+  password  String
 }
 
 model MainRoutes {

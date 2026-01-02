@@ -1,15 +1,24 @@
 import express from 'express'
 import dotenv from 'dotenv'
+import { PrismaClient } from '@prisma/client'
+import { PrismaPg } from '@prisma/adapter-pg'
 import { setupRoutes } from './endpoints.js'
+import { errorHandler, notFoundHandler } from './middleware.js'
 
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT;
+const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL });
+const prisma = new PrismaClient({ adapter, errorFormat: 'colorless' });
 
 app.use(express.json());
 
 setupRoutes(app);
+
+// Middleware dla błędów
+app.use(errorHandler);
+app.use(notFoundHandler);
 
 // Obsługa niezłapanych wyjątków
 process.on('uncaughtException', (err) => {
@@ -37,8 +46,9 @@ process.on('SIGINT', async () => {
 });
 
 //Serwer
-app.listen(PORT, () => {
+const server = app.listen(PORT, "0.0.0.0", () => {
   console.log(`Server is running on port ${PORT}`);
 });
 
 export default app;
+export { server };
