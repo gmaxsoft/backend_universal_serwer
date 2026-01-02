@@ -4,8 +4,8 @@ services:
     restart: always
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: Test123.
-      POSTGRES_DB: universal_server_database  
+      POSTGRES_PASSWORD: your_password  # Zmień na prawdziwe hasło
+      POSTGRES_DB: universal_server_database
     ports:
       - "5432:5432"
     volumes:
@@ -15,16 +15,16 @@ services:
     image: dpage/pgadmin4:latest
     restart: always
     environment:
-      PGADMIN_DEFAULT_EMAIL: biuro@maxsoft.pl 
-      PGADMIN_DEFAULT_PASSWORD: Test123.
+      PGADMIN_DEFAULT_EMAIL: admin@example.com  # Zmień na swój email
+      PGADMIN_DEFAULT_PASSWORD: your_admin_password  # Zmień na prawdziwe hasło
     ports:
       - "8080:80"  # Dostępny na http://localhost:8080
     depends_on:
       - db
     volumes:
       - pgadmin-data:/var/lib/pgadmin
-    
-# Opcjonalny serwis dla appki Node.js 
+
+# Opcjonalny serwis dla appki Node.js
 # app:
 #  build: .
 #  ports:
