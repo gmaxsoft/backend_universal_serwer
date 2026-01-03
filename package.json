@@ -6,7 +6,7 @@
   "author": "Maxsoft",
   "type": "module",
   "prisma": {
-    "seed": "node src/seed.js"
+    "seed": "node prisma/seed.js"
   },
   "main": "index.js",
   "scripts": {
