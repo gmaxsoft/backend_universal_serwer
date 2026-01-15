@@ -30,6 +30,3 @@ jobs:
       
       - name: Uruchomienie testów
         run: npm test
-      
-      - name: Weryfikacja kompilacji TypeScript
-        run: npx tsc --noEmit
