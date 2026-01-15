@@ -1,0 +1,35 @@
+name: CI - Testy i Weryfikacja
+
+on:
+  push:
+    branches: [ main, master, develop ]
+  pull_request:
+    branches: [ main, master, develop ]
+
+jobs:
+  test:
+    name: Testy jednostkowe
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
+    
+    steps:
+      - name: Sprawdzenie kodu
+        uses: actions/checkout@v4
+      
+      - name: Konfiguracja Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+      
+      - name: Instalacja zależności
+        run: npm ci
+      
+      - name: Uruchomienie testów
+        run: npm test
+      
+      - name: Weryfikacja kompilacji TypeScript
+        run: npx tsc --noEmit
