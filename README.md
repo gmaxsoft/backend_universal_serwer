@@ -2,6 +2,22 @@
 
 Uniwersalny serwer API oparty na Node.js, Express i Prisma z dynamicznym routingiem.
 
+## Technologie
+
+Projekt wykorzystuje następujące technologie i narzędzia:
+
+- **Node.js** - środowisko uruchomieniowe JavaScript
+- **Express** - framework webowy dla Node.js
+- **Prisma** - nowoczesny ORM do zarządzania bazą danych
+- **PostgreSQL** - relacyjna baza danych
+- **JWT (jsonwebtoken)** - autentyfikacja oparta na tokenach
+- **bcryptjs** - hashowanie haseł
+- **dotenv** - zarządzanie zmiennymi środowiskowymi
+- **Docker** - konteneryzacja aplikacji
+- **Jest** - framework do testowania
+- **Babel** - transpilacja kodu JavaScript
+- **nodemon** - narzędzie do automatycznego restartu serwera podczas rozwoju
+
 ## Instalacja
 
 1. Sklonuj repozytorium.
@@ -49,6 +65,41 @@ npm run dev
 ```
 
 Serwer uruchomi się na porcie 3000 (lub zgodnie z `PORT` w `.env`).
+
+## Testy jednostkowe
+
+Projekt wykorzystuje framework **Jest** do testowania jednostkowego. Testy znajdują się w katalogu `tests/`.
+
+### Uruchomienie testów
+
+Aby uruchomić wszystkie testy:
+
+```bash
+npm test
+```
+
+### Struktura testów
+
+Testy są zorganizowane w katalogu `tests/` i używają konwencji nazewnictwa `*.test.js`.
+
+Obecnie zaimplementowane testy:
+- **generateToken.test.js** - testy funkcji generowania tokenów JWT, w tym:
+  - Generowanie tokenu i ustawianie ciasteczka
+  - Obsługa domyślnych wartości wygaśnięcia tokenu
+
+### Konfiguracja testów
+
+Konfiguracja Jest znajduje się w pliku `jest.config.js`. Projekt używa:
+- Środowiska Node.js do testów
+- Mapowania modułów ES6
+- Eksperymentalnych modułów VM dla Node.js
+
+### Dodawanie nowych testów
+
+Aby dodać nowy test:
+1. Utwórz plik `*.test.js` w katalogu `tests/`
+2. Użyj funkcji `describe`, `it`, `expect` z Jest
+3. Uruchom testy za pomocą `npm test`
 
 ## API
 
